@@ -1,0 +1,74 @@
+import { useEffect, useState } from 'react';
+import './App.css';
+import PageWrapper from './components/PageWrapper';
+import ResultsTable from './components/ResultsTable';
+import TopBar from './components/TopBar';
+import ValuesSelector from './components/ValuesSelector';
+
+function App() {
+
+    const PATH = "/checkStocks";
+
+    const [stockSymbol, setStockSymbol] = useState("");
+    const [timeframeValue, setTimeframeValue] = useState("notSelectable");
+    const [timeIntervalValue, setTimeIntervalValue] = useState("notSelectable");
+    const [responseData, setResponseData] = useState({});
+
+    const makeRequest = async () => {
+        const PARAMS = "?symbol=" + stockSymbol + "&function=" + timeframeValue + "&interval=" + timeIntervalValue;
+        let request = await fetch("http://localhost:4567" + PATH + PARAMS);
+        let response = await request.json();
+        setResponseData(response);
+    };
+
+    useEffect(() => {
+        const manageTimeIntervalSelectorVisibility = () => {
+            if (timeframeValue === "INTRA_DAY") {
+                document.getElementById("select-TimeInterval").style.display = "block";
+            } else {
+                document.getElementById("select-TimeInterval").style.display = "none";
+            }
+        };
+        manageTimeIntervalSelectorVisibility();
+    }, [timeframeValue]);
+
+    const prepareRequest = () => {
+        console.log("\nCurrent selected value: (" + timeframeValue + ", " + timeIntervalValue + ", " + stockSymbol + ")");
+        if (timeIntervalValue !== "notSelectable" || (timeframeValue !== "notSelectable" && timeframeValue !== "INTRA_DAY")) {
+            console.log("Sendable\n");
+            makeRequest();
+        }
+        else {
+            console.log("NOT Sendable\n");
+        }
+    };
+
+    useEffect(() => {
+        const showResults = () => {
+            console.log("DATA:\n" + Object.keys(responseData).length);
+            let newTag = <ResultsTable data={responseData} specificProperty={"Time Series (60min)"}></ResultsTable>;
+            document.getElementById("results-table-wrapper").append(newTag);
+        };
+        showResults();
+    }, [responseData]);
+
+    return (
+        <PageWrapper>
+            <TopBar/>
+            <p id='initial-message'>
+                The following service allows you to check the current status of the stock market based on the parameters you configure to obtain information.
+            </p>
+            <input type="text" placeholder="Input a stock sysmbol" value={stockSymbol}
+                onChange={event => setStockSymbol(event.target.value)}
+            />
+            <ValuesSelector name="Timeframe"    path="/getTimeframes"    onChange={setTimeframeValue}/>
+            <ValuesSelector name="TimeInterval" path="/getTimeIntervals" onChange={setTimeIntervalValue}/>
+            <button onClick={prepareRequest}>Get Stock Info</button>
+            <div id="results-table-wrapper">
+                {/* Filled out with js */}
+            </div>
+        </PageWrapper>
+    );
+}
+
+export default App;

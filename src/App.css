@@ -1,0 +1,66 @@
+body {
+	background-color: black;
+}
+
+* {
+	Font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	padding: 0%;
+	margin: 0%;
+	font-size: 100%;
+}
+
+/* PAGE WRAPPER */
+
+#page-wrapper {
+	color: white;
+}
+
+/*TOP BAR*/
+
+#topBarContainer {
+	width: 100%;
+	height: 5rem;
+	display: flex;
+	flex-direction: row;
+	background: rgb(13,210,75);
+	background: linear-gradient(90deg, #42D86F 0%, rgba(23,184,207,1) 100%, rgba(35,232,144,1) 100%);
+}
+#leftSideTopBar {
+	display: inherit;
+	width: 33%;
+}
+#eci-logo {
+	max-width: 2.6rem;
+	height: 2.6rem;
+	margin-top: 1.1rem;
+	margin-left: 1rem;
+	border-radius: 4px;
+}
+#leftSide-text {
+	text-transform: uppercase;
+	color: black;
+	padding: 1.1rem 0rem 0rem 0.7rem;
+	font-size: 0.9rem;
+	font-weight: bolder;
+}
+#centerSideTopBar {
+	width: 34%;
+	padding-top: 1.3rem;
+	font-size: 1.5rem;
+	color: black;
+	text-transform: uppercase;
+}
+#topBar-title {
+	width: 100%;
+	text-align: center;
+}
+#rightSideTopBar {
+	width: 33%;
+}
+
+/* Selectors */
