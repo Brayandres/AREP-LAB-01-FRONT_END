@@ -46,8 +46,6 @@ function App() {
     useEffect(() => {
         const showResults = () => {
             console.log("DATA:\n" + Object.keys(responseData).length);
-            let newTag = <ResultsTable data={responseData} specificProperty={"Time Series (60min)"}></ResultsTable>;
-            document.getElementById("results-table-wrapper").append(newTag);
         };
         showResults();
     }, [responseData]);
