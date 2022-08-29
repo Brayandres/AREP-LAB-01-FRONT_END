@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import PageWrapper from './components/PageWrapper';
 import ResultsTable from './components/ResultsTable';
@@ -13,6 +13,7 @@ function App() {
     const [timeframeValue, setTimeframeValue] = useState("notSelectable");
     const [timeIntervalValue, setTimeIntervalValue] = useState("notSelectable");
     const [responseData, setResponseData] = useState({});
+    const tableContainer = useRef();
 
     const makeRequest = async () => {
         const PARAMS = "?symbol=" + stockSymbol + "&function=" + timeframeValue + "&interval=" + timeIntervalValue;
@@ -62,7 +63,7 @@ function App() {
             <ValuesSelector name="Timeframe"    path="/getTimeframes"    onChange={setTimeframeValue}/>
             <ValuesSelector name="TimeInterval" path="/getTimeIntervals" onChange={setTimeIntervalValue}/>
             <button onClick={prepareRequest}>Get Stock Info</button>
-            <div id="results-table-wrapper">
+            <div id="results-table-wrapper" ref={tableContainer}>
                 {/* Filled out with js */}
             </div>
         </PageWrapper>
