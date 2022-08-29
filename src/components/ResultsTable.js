@@ -48,7 +48,6 @@ function ResultsTable(props) {
 		if (wasProcesed) {
 			const keys = Object.keys(object);
 			const values = Object.values(object);
-
 			return (
 				<table>
 					<thead>
@@ -60,22 +59,14 @@ function ResultsTable(props) {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>2</td>
-							<td>3</td>
-							<td>4</td>
-							<td>5</td>
-							<td>¿</td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td>7</td>
-							<td>8</td>
-							<td>9</td>
-							<td>0</td>
-							<td>?</td>
-						</tr>
+						{keys.map((key, position = 0) => 
+							<tr>
+								<td>{key}</td>
+								{Object.values(values[position]).map(value =>
+									<td>{value}</td>
+								)}
+							</tr>
+						)}
 					</tbody>
 				</table>
 			);
