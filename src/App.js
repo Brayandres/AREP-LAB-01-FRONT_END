@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import PageWrapper from './components/PageWrapper';
 import ResultsTable from './components/ResultsTable';
-import TopBar from './components/TopBar';
 import ValuesSelector from './components/ValuesSelector';
 
 function App() {
@@ -57,7 +56,6 @@ function App() {
 
     return (
         <PageWrapper>
-            <TopBar/>
             <div id='top-text-container'>
                 <p id='initial-message'>
                     The following service allows you to check the current status of the stock market based on the parameters you configure
