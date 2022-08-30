@@ -17,10 +17,7 @@ function ResultsTable(props) {
 	} = props;
 
     const searchProperty = (object, propName) => {
-		let value = (Object.keys(object).length === 0 || propName === "");
-		console.log("Value: " + value);
-		if (!value) {
-			console.log("OBJECT: " + JSON.stringify(object));
+		if (!(Object.keys(object).length === 0 || propName === "")) {
 			let propertyHasBeenFound = false;
 			while (!propertyHasBeenFound) {
 				let lastKey;
@@ -53,8 +50,6 @@ function ResultsTable(props) {
     const iterableData = searchProperty(data, specificProperty);
 
     const fillDataInTable = object => {
-        //console.log("\n   Length: " + Object.keys(object).length);
-		//console.log("    PROCESED:\n" + Object.values(object));
 		if (wasProcesed) {
 			const keys = Object.keys(object);
 			const values = Object.values(object);

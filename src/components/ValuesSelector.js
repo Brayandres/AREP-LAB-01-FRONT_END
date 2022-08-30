@@ -19,7 +19,6 @@ function ValuesSelector(props) {
         let value = event.target.value;
         setCurrentValue(value);
         props.onChange(value);
-        //console.log("Current value: " + value);
     };
     
     return (

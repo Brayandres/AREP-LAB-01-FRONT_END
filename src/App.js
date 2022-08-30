@@ -33,13 +33,11 @@ function App() {
     }, [timeframeValue]);
 
     const prepareRequest = () => {
-        console.log("\nCurrent selected value: (" + timeframeValue + ", " + timeIntervalValue + ", " + stockSymbol + ")");
         if (timeIntervalValue !== "notSelectable" || (timeframeValue !== "notSelectable" && timeframeValue !== "INTRA_DAY")) {
-            console.log("Sendable\n");
             makeRequest();
         }
         else {
-            console.log("NOT Sendable\n");
+            alert("No se ha podido realizar la solictud!");
         }
     };
 
@@ -47,8 +45,6 @@ function App() {
         const showResults = () => {
             let property = Object.values(responseData[0])[0];
             let dataBody = responseData[1];
-            console.log("DATA: " + Object.keys(dataBody).length);
-            console.log("\nProperty: " + property);
             setDataTable(<ResultsTable data={dataBody} specificProperty={property}/>);
         };
         showResults();
