@@ -63,4 +63,23 @@ html, body {
 	width: 33%;
 }
 
+/* Top text */
+
+#top-text-container {
+	width: 80%;
+	margin-left: 5%;
+}
+
+#initial-message {
+	font-size: 1.2rem;
+}
+
+.parameter-especification {
+	margin-left: 2rem;
+}
+
+#note-about-section-timeinterval {
+	font-size: 0.8rem;
+}
+
 /* Selectors */
