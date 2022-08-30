@@ -1,6 +1,15 @@
+import { useEffect } from "react";
+
 function ResultsTable(props) {
 
 	let wasProcesed = false;
+
+	useEffect(() => {
+		const tableContainerInitialState = () => {
+			document.getElementById("table-container").style.display = "none";
+		};
+		tableContainerInitialState();
+	}, []);
 
 	const {
 		data = {},
@@ -29,6 +38,7 @@ function ResultsTable(props) {
 			}
 			if (object != null) {
 				wasProcesed = true;
+				document.getElementById("table-container").style.display = "block";
 				return object;
 			}
 			else {
@@ -59,13 +69,15 @@ function ResultsTable(props) {
 						</tr>
 					</thead>
 					<tbody>
-						{keys.map((key, position = 0) => 
-							<tr>
-								<td>{key}</td>
+						{keys.map((key, position = 0) => {
+							let classValue = (position % 2 === 0) ? "td-even" : "td-odd";
+							return <tr>
+								<td className={classValue}>{key}</td>
 								{Object.values(values[position]).map(value =>
-									<td>{value}</td>
+									<td className={classValue}>{value}</td>
 								)}
 							</tr>
+							}
 						)}
 					</tbody>
 				</table>
@@ -74,7 +86,7 @@ function ResultsTable(props) {
     };
 
     return (
-        <div>
+        <div id="table-container">
             {fillDataInTable(iterableData)}
         </div>
     );

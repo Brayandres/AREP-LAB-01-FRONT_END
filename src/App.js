@@ -58,6 +58,7 @@ function App() {
         <PageWrapper>
             <div id='top-text-container'>
                 <p id='initial-message'>
+                    <b>STOCK MARKET API</b><br/>
                     The following service allows you to check the current status of the stock market based on the parameters you configure
                     to obtain information. The meaning of each of the parameters is explained in more detail below.
                 </p>
@@ -77,12 +78,16 @@ function App() {
                     <b>(* TimeInterval will only be available for the <i>INTRA_DAY</i> option of Timeframe.)</b>
                 </p>
             </div>
-            <input type="text" placeholder="Input a stock sysmbol" value={stockSymbol}
-                onChange={event => setStockSymbol(event.target.value)}
-            />
-            <ValuesSelector name="Timeframe"    path="/getTimeframes"    onChange={setTimeframeValue}/>
-            <ValuesSelector name="TimeInterval" path="/getTimeIntervals" onChange={setTimeIntervalValue}/>
-            <button onClick={prepareRequest}>Get Stock Info</button>
+            <div id='parameters-container'>
+                <input className='parameters' id='input-symbol' type="text" placeholder="Stock Symbol" value={stockSymbol}
+                    onChange={event => setStockSymbol(event.target.value)}
+                />
+                <ValuesSelector name="Timeframe"    path="/getTimeframes"    onChange={setTimeframeValue}/>
+                <ValuesSelector name="TimeInterval" path="/getTimeIntervals" onChange={setTimeIntervalValue}/>
+            </div>
+            <div id='btn-container'>
+                <button className='parameters' id='get-info-btn' onClick={prepareRequest}>Get{'\u00A0'} Info</button>
+            </div>
             <div id="results-table-wrapper">
                 {dataTable}
             </div>
