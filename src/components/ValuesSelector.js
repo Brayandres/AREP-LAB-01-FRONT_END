@@ -7,7 +7,7 @@ function ValuesSelector(props) {
     const [currentValue, setCurrentValue] = useState("notSelectable");
 
     const getValuesList = async () => {
-        const REQUEST_URL = "http://localhost:4567" + PATH;
+        const REQUEST_URL = PATH;
         let request = await fetch(REQUEST_URL);
         let response = await request.json();
         setOptionValues(response);

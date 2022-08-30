@@ -17,7 +17,7 @@ function App() {
 
     const makeRequest = async () => {
         const PARAMS = "?symbol=" + stockSymbol + "&function=" + timeframeValue + "&interval=" + timeIntervalValue;
-        let request = await fetch("http://localhost:4567" + PATH + PARAMS);
+        let request = await fetch(PATH + PARAMS);
         let response = await request.json();
         setResponseData(response);
     };
