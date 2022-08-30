@@ -22,6 +22,21 @@ html, body {
 	font-size: 100%;
 }
 
+/* Body scrollbar */
+
+body::-webkit-scrollbar {
+	width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+	background: #949494;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #2F4858;
+	border-radius: 3px;
+}
+
 /* PAGE WRAPPER */
 
 #page-wrapper {
