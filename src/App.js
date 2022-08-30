@@ -12,7 +12,7 @@ function App() {
     const [stockSymbol, setStockSymbol] = useState("");
     const [timeframeValue, setTimeframeValue] = useState("notSelectable");
     const [timeIntervalValue, setTimeIntervalValue] = useState("notSelectable");
-    const [responseData, setResponseData] = useState({});
+    const [responseData, setResponseData] = useState([{"":""}, {}]);
     const [dataTable, setDataTable] = useState(<></>);
 
     const makeRequest = async () => {
@@ -46,8 +46,11 @@ function App() {
 
     useEffect(() => {
         const showResults = () => {
-            console.log("DATA:\n" + Object.keys(responseData).length);
-            setDataTable(<ResultsTable data={responseData} specificProperty={"Time Series (60min)"}/>);
+            let property = Object.values(responseData[0])[0];
+            let dataBody = responseData[1];
+            console.log("DATA: " + Object.keys(dataBody).length);
+            console.log("\nProperty: " + property);
+            setDataTable(<ResultsTable data={dataBody} specificProperty={property}/>);
         };
         showResults();
     }, [responseData]);
